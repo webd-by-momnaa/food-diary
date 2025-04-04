@@ -7,7 +7,7 @@ import chop3 from "../RecipeImages/chop3.jpg"
 import oil from "../RecipeImages/oil.jpg"
 import fish from "../RecipeImages/fish.jpg"
 import blog1 from "../RecipeImages/blog1.jpg"
-import cookies1 from "../RecipeImages/cookies1.jpg"
+import cookies1 from "../RecipeImages/Cookies1.jpg"
 import cookies2 from "../RecipeImages/cookies2.jpg"
 
 const AboutOne = () => {
