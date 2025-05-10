@@ -10,9 +10,10 @@ function RecepieDetails() {
   const { id } = useParams();
   const [api, setApi] = useState({});
   const [rate, setRate] = useState({});
+  const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
 
   const data = async () => {
-    await axios.get(`http://localhost:5000/recipe/single/${id}`)
+    await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/single/${id}`)
       .then((res) => {
         setApi(res.data.food);
         setRate(res.data.rate);
@@ -101,7 +102,7 @@ function RecepieDetails() {
           <div className='flex'>
             <div className='w-[65rem] h-[35rem] '>
               <img 
-                src={`http://localhost:5000/recipe/image/${api._id}`} 
+                src={`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/image/${api._id}`} 
                 alt="recipe"
                 className="w-full h-full object-cover object-center rounded-md" 
                 loading="lazy" 

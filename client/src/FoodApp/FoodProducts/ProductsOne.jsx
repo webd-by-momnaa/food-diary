@@ -5,9 +5,11 @@ import { ImArrowDown } from 'react-icons/im';
 import axios from "axios"
 const ProductsOne = () => {
   const [data,setData] = useState()
+  const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
 
   const recdata  = async () =>{
-    await axios.get("http://localhost:5000/recipe/complete").then((res)=>{setData(res.data)})
+    await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/complete`)
+    .then((res)=>{setData(res.data)})
     .catch((err)=>console.log(err.message))
   }
   useEffect(()=>{recdata()},[])
@@ -27,12 +29,12 @@ const ProductsOne = () => {
           data?.map((v)=>{
             return (
               <>
-            <div class="flip-card mt-12">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-    <img src={`http://localhost:5000/recipe/image/${v._id}`} alt="" className='w-72 h-48 border border-lime-700 object-cover object-center'/><br />
+            <div className="flip-card mt-12">
+  <div className="flip-card-inner">
+    <div className="flip-card-front">
+    <img src={`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/image/${v._id}`} alt="" className='w-72 h-48 border border-lime-700 object-cover object-center'/><br />
     </div>
-    <div class="flip-card-back opacity-95 pt-12">
+    <div className="flip-card-back opacity-95 pt-12">
     <h1 className="recipe-title text-xl text-lime-200">{v.title}</h1>
     <p><strong>Prep: </strong>{v.prepTime} mins | <strong>Cook: </strong>{v.cookTime} mins </p>     
     <Rate disabled defaultValue={5} />

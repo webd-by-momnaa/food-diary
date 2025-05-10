@@ -7,11 +7,12 @@ import BlogRecipeTwo from "./BlogRecipeTwo"
 import UniFoodNav from '../AllFoodNavbars/UniFoodNav';
 const DetailBlog = () => {
   const [card, setCard] = useState([]);
+  const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
 
   // Fetch blog data
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/blog/get");
+      const res = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/blog/get`);
       setCard(res.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);
@@ -20,7 +21,7 @@ const DetailBlog = () => {
     // Fetch blog data
     const fetchCateg = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/blog/oncateg/:categ");
+        const res = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/blog/oncateg/:categ`);
         setCard(res.data);
       } catch (error) {
         console.error("Error fetching blog data:", error);
@@ -106,7 +107,7 @@ const DetailBlog = () => {
             {/* Image */}
             <div className="image-container w-full h-full object-cover object-center my-5">
               <img
-                src={`http://localhost:5000/blog/image/${v._id}`}
+                src={`${import.meta.env.VITE_APP_API_BASE_URL}/blog/image/${v._id}`}
                 alt={v.title || "Blog image"}
                 className="w-full object-cover rounded"
                 loading="lazy"
@@ -138,7 +139,7 @@ const DetailBlog = () => {
                 <div className="mb-3">
                   <img
                     className="w-12 h-12 object-cover rounded-full "
-                    src={`http://localhost:5000/profile/image/${v.profileCard._id}`}
+                    src={`${import.meta.env.VITE_APP_API_BASE_URL}/profile/image/${v.profileCard._id}`}
                     alt={v.profileCard.name || "Profile image"}
                   />
                 </div>

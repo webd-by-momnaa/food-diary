@@ -14,6 +14,7 @@ const SearchedData = () => {
 
   const location = useLocation();
   const searchQuery = location.state?.query || ""; // Retrieve the search query
+  const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
 
   const fetchData = async () => {
     try {
@@ -24,7 +25,7 @@ const SearchedData = () => {
         return;
       }
 
-      const res = await axios.get(`http://localhost:5000/recipe/search/${searchQuery}`);
+      const res = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/search/${searchQuery}`);
       console.log("API Response:", res.data); // Log the API response
       setCards(res.data.data); // Assuming `data` contains the results
     } catch (err) {
@@ -52,7 +53,7 @@ const SearchedData = () => {
       {cards.map((v,i) => (
 <div className="vertical-cardTwo ">
 <div className="card-headerTwo">
-  <img src={`http://localhost:5000/recipe/image/${v._id}`} alt="Recipe" className="card-image object-cover object-center w-80 h-48" loading='lazy'/>
+  <img src={`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/image/${v._id}`} alt="Recipe" className="card-image object-cover object-center w-80 h-48" loading='lazy'/>
   <h1 className="recipe-titleTwo">{v.title}</h1>
 </div><br />
 <div className="card-content">

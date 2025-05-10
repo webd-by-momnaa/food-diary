@@ -8,10 +8,11 @@ const FoodNavThree = () => {
   const location = useLocation();
   const message = location.state?.message;
   const [card, setCard] = useState([]);
+  const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/profile/get");
+      const res = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/profile/get`);
       setCard(res.data);
     } catch (error) {
       console.error("Error fetching profile:", error);
@@ -24,7 +25,7 @@ const FoodNavThree = () => {
   const [search,setSearch] = useState("")
   const searchFoods = (e) => {
     e.preventDefault();
-    axios.get(`http://localhost:5000/recipe/search/${search}`)
+    axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/search/${search}`)
       .then((res) => {
         nav("/search", { state: { query: search } }); // Pass search query
       })

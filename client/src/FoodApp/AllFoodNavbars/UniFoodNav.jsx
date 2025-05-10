@@ -11,10 +11,11 @@ const UniFoodNav = () => {
   const [card, setCard] = useState([]);
   const [search, setSearch] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/profile/get");
+      const res = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/profile/get`);
       setCard(res.data);
     } catch (error) {
       console.error("Error fetching profile:", error);
@@ -28,7 +29,7 @@ const UniFoodNav = () => {
   const nav = useNavigate();
   const searchFoods = (e) => {
     e.preventDefault();
-    axios.get(`http://localhost:5000/recipe/search/${search}`)
+    axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/search/${search}`)
       .then(() => {
         nav("/search", { state: { query: search } });
       })
@@ -95,7 +96,7 @@ const UniFoodNav = () => {
               <div key={v._id}>
                 <img
                   className="w-12 rounded-full h-12 object-cover object-center"
-                  src={`http://localhost:5000/profile/image/${v._id}`}
+                  src={`${import.meta.env.VITE_APP_API_BASE_URL}/profile/image/${v._id}`}
                   alt="Profile"
                 />
                 

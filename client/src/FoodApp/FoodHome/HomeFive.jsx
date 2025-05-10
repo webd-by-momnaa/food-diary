@@ -5,18 +5,22 @@ import { GrNext } from "react-icons/gr";
 import load from "../RecipeImages/load.gif";
 
 const HomeFive = () => {
+
+
   const [recipes, setRecipes] = useState([]);
   const [page, setPage] = useState(1); // Track current page
   const [hasMore, setHasMore] = useState(true); // To control "Load More" visibility
   const [loading, setLoading] = useState(false);
 
   const pageSize = 6; // Number of recipes per page
+    const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
+
 
   const fetchRecipes = async () => {
     if (loading) return; // Prevent duplicate requests
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/recipe/latest", {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/latest`, {
         params: { page, pageSize },
       });
       const data = response.data;
@@ -56,7 +60,7 @@ const HomeFive = () => {
             <Link to={`/detail/${recipe._id}`}>
               <div className="image-containerlatest hover:text-pink-700 ">
                 <img
-                  src={`http://localhost:5000/recipe/image/${recipe._id}`}
+                  src={`${import.meta.env.VITE_APP_API_BASE_URL}/recipe/image/${recipe._id}`}
                   alt="Recipe"
                   className="w-72 h-56 object-cover object-center"
                   loading="lazy"

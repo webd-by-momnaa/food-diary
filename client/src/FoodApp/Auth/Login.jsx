@@ -9,12 +9,13 @@ const Login = ({ isVisible, onClose }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/user/log", {
+      const res = await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}/user/log`, {
         email,
         password,
       });

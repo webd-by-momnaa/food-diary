@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 import { GrNext } from "react-icons/gr";
 const BlogRecipeTwo = () => {
   const [card, setCard] = useState([])
+    const API_BASE = import.meta.env.VITE_APP_API_BASE_URL;
+
   const data = async ()=>{
-    await axios.get("http://localhost:5000/blog/blog")
+    await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/blog/blog`)
     .then((res)=>{setCard(res.data)})
     .catch((error)=>{console.log(error)})
   }
@@ -26,7 +28,7 @@ const BlogRecipeTwo = () => {
             <div className="relative w-fit pb-8" key={i+1}>
               <Link to={`/blog/${v._id}`}>
               <div className="image-container hover:text-pink-700">
-        <img  src={`http://localhost:5000/blog/image/${v._id}`} alt="Blog" className='w-72 h-56 object-cover object-center'loading='lazy'/>
+        <img  src={`${import.meta.env.VITE_APP_API_BASE_URL}/blog/image/${v._id}`} alt="Blog" className='w-72 h-56 object-cover object-center'loading='lazy'/>
         <h1 className='absolute z-20 text-lg'><b>{v.title}</b></h1>
         </div>
         </Link>
